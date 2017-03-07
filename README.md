@@ -5,7 +5,7 @@ Lightweight ETL Libray.
 # Work In Progress
 
 This repository is work in progress.
-Current Design is api design.
+Current status is api design.
 
 
 # API Design Memo
