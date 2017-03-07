@@ -12,21 +12,21 @@ Current status is api design.
 
 ## Quick Start :)
 
-```
+```java
 // File Copy
 Pipeline.from("from_flle_path")
 	.to("to_file_path")
 	;
 ```
 
-```
+```java
 // List
 List<List<String>> lists = PipeLine.from("from_file_path")
 	.collect()
 	;
 ```
 
-```
+```java
 // Stream
 Stream<ExampleBrean> stream = PipeLine.from("from_file_path")
 	.stream(ExampleBrean.class)
@@ -35,14 +35,14 @@ Stream<ExampleBrean> stream = PipeLine.from("from_file_path")
 
 
 ## I/O
-```
+```java
 // Enable to set options
 Pipeline.from("from_flle_path", Charsets.forName("Windows-31J"))
 	to("to_file_path", StandardCharset.UTF_8)
 	;
 ```
 
-```
+```java
 // Custom Reader & Writer
 Pipeline.from(new CustomFixedWidthReader("from_file_path"))
 	.to(new CustomKvsDataStoreWriter("url", "to_table_name"))
@@ -51,7 +51,7 @@ Pipeline.from(new CustomFixedWidthReader("from_file_path"))
 
 ## Filter
 
-```
+```java
 // Filter
 Pipeline.from("from_file_path")
 	.filter(list -> list.size() == 5)
@@ -62,10 +62,11 @@ Pipeline.from("from_file_path")
 
 
 ## Transformer
-```
+
+```java
 // Field Transformer
 Pipeline.from("from_file_path")
-	.transform(i -> i * 10, 1, 0, 1, 1, 0)	// TODO 無理なんじゃね疑惑。
+	.transform(i -> i * 10, 1, 0, 1, 1, 0)	// !!! TODO !!!
 	.transform(String::toUpperCase, 1)
 	.transform(String::toUpperCase, 1, 2, 4)
 	.transform(s -> s.substring(0, 10), 1, 6, 7)
@@ -74,7 +75,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Custom Transformer
 Pipeline.from("from_file_path")
 	// Field level transformer
@@ -95,7 +96,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Schema Based Transformer
 Pipeline.from("from_file_path")
 	.transform(new ShemaBasedValidator(
@@ -106,7 +107,7 @@ Pipeline.from("from_file_path")
 
 ## Validator
 
-```
+```java
 // Validator
 Pipeline.from("from_file_path")
 	.validator(1, s.length <= 5)
@@ -139,7 +140,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Schema Based Validator
 Pipeline.from("from_file_path")
 	.validator(new ShemaBasedValidator(
@@ -149,7 +150,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Validator Set
 CompositeValitor standardCompositeValidator = new CompositeValidator()
 	.validate(new DefaultTypeValidaor())
@@ -165,7 +166,7 @@ Pipeline.from("from_file_path")
 
 ## Aggregator
 
-```
+```java
 // Aggregate
 Pipeline.from("from_file_path")
 	.aggregateKey("key_1", new Aggregator() {
@@ -195,7 +196,8 @@ Pipeline.from("from_file_path")
 ```
 
 ## Splitter
-```
+
+```java
 // Split
 Pipeline.from("from_file_path")
 	.splitter(new CustomSplitter() {
@@ -210,14 +212,15 @@ Pipeline.from("from_file_path")
 
 
 ## Label(Key) Binding
-```
+
+```java
 Pipeline.from("from_file_path")
 	.userHeader(true)
 	.to("to_file_path")	// when stream item is only one then write as it is.
 	;
 ```
 
-```
+```java
 Pipeline.from("from_file_path")
 	.bind("col1", "col2", "col3", "col4", "col5)
 	.transform(String::toUpperCase, "col2", "col4", "col5")
@@ -226,7 +229,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Multi Layout
 Pipeline.from("from_file_path")
 	.tranform(/**/)
@@ -256,7 +259,7 @@ List<List<String<> lists = PipeLine.from("from_file_path")
 	;
 ```
 
-```
+```java
 // if you want to use error, then code is like this.
 PipeLine pipeline = PipeLine.from("from_file_path")
 	.validate(/*Validator*/)
@@ -266,9 +269,9 @@ List<List<String>> list = pipeLine.collect();
 List<Error> errList = pipeLine.error();
 ```
 
-## Now Working
+## Error Object
 
-```
+```java
 // Error
 Error err = ...
 long lineNo = err.getLineNo();
