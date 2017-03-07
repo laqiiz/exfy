@@ -119,7 +119,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Custom Validation & Error Handler
 Pipeline.from("from_file_path")
 	// Field level validator
@@ -182,7 +182,7 @@ Pipeline.from("from_file_path")
 	;
 ```
 
-```
+```java
 // Custom Aggregation Trigger
 Pipeline.from("from_file_path")
 	.aggregationTrigger(new CustomAggregationTriger())
@@ -251,7 +251,7 @@ private void pipe1(Pipeline pipeline) {
 
 ## Error Output
 
-```
+```java
 // CAUTION!
 List<List<String<> lists = PipeLine.from("from_file_path")
 	.validate(/*Validator*/)
