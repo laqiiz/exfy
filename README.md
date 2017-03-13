@@ -1,5 +1,5 @@
 # exfy
-Lightweight ETL Libray.
+exfy is Lightweight and Pipeline oriented ETL Libray.
 
 
 # Work In Progress
@@ -21,15 +21,24 @@ Pipeline.from("from_flle_path")
 
 ```java
 // List
-List<List<String>> lists = PipeLine.from("from_file_path")
+List<List<String>> lists = Pipeline.from("from_file_path")
 	.collect()
 	;
 ```
 
 ```java
 // Stream
-Stream<ExampleBrean> stream = PipeLine.from("from_file_path")
+Stream<ExampleBrean> stream = Pipeline.from("from_file_path")
 	.stream(ExampleBrean.class)
+	;
+```
+
+```java
+// aaa,1001,001
+// bbb,1002,002
+// ccc,1003,003
+Pipeline.from(Arrays.asList("aaa,1001,001", "bbb,1002,002", "ccc,1003,003"))
+	.dest(System.out::println)
 	;
 ```
 
@@ -49,6 +58,27 @@ Pipeline.from(new CustomFixedWidthReader("from_file_path"))
 	;
 ```
 
+## Slice
+
+```
+// 1010,001,ABC
+// 1002,002,DEF
+// 1003,003,GHI
+Pipeline.from(Arrays.asList("aaa,1001,001,ABC,-100", "bbb,1002,002,DEF,+100", "ccc,1003,003,GHI,+302"))
+	.slice(1, 4)
+	.to(System.out:println)
+	;
+```
+
+## Sliced Pipeline Merge
+
+// TODO
+
+## Field Sort
+
+// TODO
+
+
 ## Filter
 
 ```java
@@ -63,10 +93,12 @@ Pipeline.from("from_file_path")
 
 ## Transformer
 
+// !!! TODO !!!
+
 ```java
 // Field Transformer
 Pipeline.from("from_file_path")
-	.transform(i -> i * 10, 1, 0, 1, 1, 0)	// !!! TODO !!!
+	.transform(i -> i * 10)
 	.transform(String::toUpperCase, 1)
 	.transform(String::toUpperCase, 1, 2, 4)
 	.transform(s -> s.substring(0, 10), 1, 6, 7)
@@ -208,7 +240,6 @@ Pipeline.from("from_file_path")
 	.to("to_file_path")
 	;
 ```
-
 
 
 ## Label(Key) Binding
