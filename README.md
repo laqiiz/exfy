@@ -60,7 +60,7 @@ Pipeline.from(new CustomFixedWidthReader("from_file_path"))
 
 ## Slice
 
-```
+```java
 // 1010,001,ABC
 // 1002,002,DEF
 // 1003,003,GHI
